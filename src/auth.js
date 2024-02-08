@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "../node_modules/@firebase/auth";
 
 const auth = getAuth();
 //sign up
