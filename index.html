@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Lato"
     />
     <link
@@ -20,28 +24,31 @@
   </head>
   <body>
     <!-- Navbar -->
-    <div class="w3-top">
-      <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-        <a
-          class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
-          href="javascript:void(0);"
-          onclick="myFunction()"
-          title="Toggle Navigation Menu"
-          ><i class="fa fa-bars"></i
-        ></a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"
+    <nav class="z-depth-0 ">
+      <div class="w3-bar w3-red w3-card w3-red w3-left-align ">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white modal-trigger" data-target="modal-account"
           >Home</a
         >
+      </li>
+      <li class="logged-in">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white" 
+          >Log out</a
+        >
+      </li>
+      <li class="logged-Out">
         <a
-          href="login.html"
-          class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+          href="#"
+          class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white modal-trigger" data-target="modal-login"
           >log in</a
-        >
+        ></li>
+        <li class="logged-out">
         <a
-          href="login.html"
-          class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+          href="#"
+          class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white modal-trigger" data-target="modal-signup"
           >sign up</a
-        >
+        ></li>
       </div>
 
       <!-- Navbar on small screens -->
@@ -54,7 +61,53 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
       </div>
+    </ul>
+    </nav>
+
+     <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
     </div>
+  </div>
+
+   <!-- LOGIN MODAL -->
+   <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+
+   <!-- ACCOUNT MODAL -->
+   <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+      <div class="account-extras"></div>
+    </div>
+  </div>
 
     <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding: 128px 16px">
