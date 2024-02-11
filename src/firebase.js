@@ -19,9 +19,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-const auth = app.getAuth();
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
 //sign up
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit',(e) => {
@@ -35,7 +34,7 @@ signupForm.addEventListener('submit',(e) => {
     console.log(email, password);
 
     // sign up the user
-    createUserWithEmailAndPassword(auth, email, password)
+   createUserWithEmailAndPassword(auth,email,password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
@@ -43,8 +42,10 @@ signupForm.addEventListener('submit',(e) => {
     // ...
   })
   .catch((error) => {
+    
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log('didnt work', errorMessage)
     // ..
   });
 

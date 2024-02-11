@@ -42,17 +42,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/auth.js":
-/*!*********************!*\
-  !*** ./src/auth.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/@firebase/auth */ \"./node_modules/@firebase/auth/dist/esm2017/index.js\");\n\r\n\r\nconst auth = (0,_node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_0__.getAuth)();\r\n//sign up\r\nconst signupForm = document.querySelector('#signup-form');\r\nsignupForm.addEventListener('submit',(e) => {\r\n    e.preventDefault();\r\n\r\n    //get user info\r\n\r\n    const email = signupForm['signup-email'].value;\r\n    const password = signupForm['signup-password'].value;\r\n\r\n    console.log(email, password);\r\n\r\n    // sign up the user\r\n    (0,_node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_0__.createUserWithEmailAndPassword)(auth, email, password)\r\n  .then((userCredential) => {\r\n    // Signed up \r\n    const user = userCredential.user;\r\n    console.log(user)\r\n    // ...\r\n  })\r\n  .catch((error) => {\r\n    const errorCode = error.code;\r\n    const errorMessage = error.message;\r\n    // ..\r\n  });\r\n\r\n})\n\n//# sourceURL=webpack://stock-app/./src/auth.js?");
-
-/***/ }),
-
 /***/ "./src/display.js":
 /*!************************!*\
   !*** ./src/display.js ***!
@@ -70,7 +59,7 @@ eval("// Get references to HTML elements\r\nconst stockSymbolInput = document.ge
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/@firebase/app */ \"./node_modules/@firebase/app/dist/esm/index.esm2017.js\");\n/* harmony import */ var _node_modules_firebase_analytics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/@firebase/analytics */ \"./node_modules/@firebase/analytics/dist/esm/index.esm2017.js\");\n// Import the functions you need from the SDKs you need\r\n\r\n\r\n// TODO: Add SDKs for Firebase products that you want to use\r\n// https://firebase.google.com/docs/web/setup#available-libraries\r\n\r\n// Your web app's Firebase configuration\r\n// For Firebase JS SDK v7.20.0 and later, measurementId is optional\r\nconst firebaseConfig = {\r\n  apiKey: \"AIzaSyCA_2F27rpNONcZbIZzVwwmf_iGKRVwfd4\",\r\n  authDomain: \"stock-app-3ef83.firebaseapp.com\",\r\n  projectId: \"stock-app-3ef83\",\r\n  storageBucket: \"stock-app-3ef83.appspot.com\",\r\n  messagingSenderId: \"97376314996\",\r\n  appId: \"1:97376314996:web:a8c3d8b81522889b169321\",\r\n  measurementId: \"G-G8048NWSL5\"\r\n};\r\n\r\n// Initialize Firebase\r\n(0,_node_modules_firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig);\r\n\n\n//# sourceURL=webpack://stock-app/./src/firebase.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/@firebase/app */ \"./node_modules/@firebase/app/dist/esm/index.esm2017.js\");\n/* harmony import */ var _node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/@firebase/auth */ \"./node_modules/@firebase/auth/dist/esm2017/index.js\");\n/* harmony import */ var _node_modules_firebase_analytics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/@firebase/analytics */ \"./node_modules/@firebase/analytics/dist/esm/index.esm2017.js\");\n// Import the functions you need from the SDKs you need\r\n\r\n\r\n\r\n// TODO: Add SDKs for Firebase products that you want to use\r\n// https://firebase.google.com/docs/web/setup#available-libraries\r\n\r\n// Your web app's Firebase configuration\r\n// For Firebase JS SDK v7.20.0 and later, measurementId is optional\r\nconst firebaseConfig = {\r\n  apiKey: \"AIzaSyCA_2F27rpNONcZbIZzVwwmf_iGKRVwfd4\",\r\n  authDomain: \"stock-app-3ef83.firebaseapp.com\",\r\n  projectId: \"stock-app-3ef83\",\r\n  storageBucket: \"stock-app-3ef83.appspot.com\",\r\n  messagingSenderId: \"97376314996\",\r\n  appId: \"1:97376314996:web:a8c3d8b81522889b169321\",\r\n  measurementId: \"G-G8048NWSL5\"\r\n};\r\n\r\n// Initialize Firebase\r\nconst app = (0,_node_modules_firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig);\r\nconst analytics = (0,_node_modules_firebase_analytics__WEBPACK_IMPORTED_MODULE_2__.getAnalytics)(app);\r\nconst auth = (0,_node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)(app);\r\n//sign up\r\nconst signupForm = document.querySelector('#signup-form');\r\nsignupForm.addEventListener('submit',(e) => {\r\n    e.preventDefault();\r\n\r\n    //get user info\r\n\r\n    const email = signupForm['signup-email'].value;\r\n    const password = signupForm['signup-password'].value;\r\n\r\n    console.log(email, password);\r\n\r\n    // sign up the user\r\n   (0,_node_modules_firebase_auth__WEBPACK_IMPORTED_MODULE_1__.createUserWithEmailAndPassword)(auth,email,password)\r\n  .then((userCredential) => {\r\n    // Signed up \r\n    const user = userCredential.user;\r\n    console.log(user)\r\n    // ...\r\n  })\r\n  .catch((error) => {\r\n    \r\n    const errorCode = error.code;\r\n    const errorMessage = error.message;\r\n    console.log('didnt work', errorMessage)\r\n    // ..\r\n  });\r\n\r\n})\n\n//# sourceURL=webpack://stock-app/./src/firebase.js?");
 
 /***/ }),
 
@@ -246,7 +235,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	__webpack_require__("./src/index.js");
 /******/ 	__webpack_require__("./src/firebase.js");
-/******/ 	__webpack_require__("./src/auth.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/display.js");
 /******/ 	
 /******/ })()
