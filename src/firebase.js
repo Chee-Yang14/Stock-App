@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "../node_modules/@firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "../node_modules/@firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword} from "../node_modules/@firebase/auth";
 import { getAnalytics } from "../node_modules/@firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,3 +50,23 @@ signupForm.addEventListener('submit',(e) => {
   });
 
 })
+
+const logoutButton = document.querySelector('.logout')
+logoutButton.addEventListener('click', () => {
+  signOut(auth).then(() => {
+    console.log('user signed out')
+  }).catch((err)=> {console.log(err.message)})
+}) 
+
+const loginForm = document.querySelector('#login-form')
+loginForm.addEventListener('submit', (e) => {
+e.preventDefault()
+const email = loginForm['login-email'].value;
+const password = loginForm['login-password'].value;
+
+signInWithEmailAndPassword(auth, email, password).then(()=>{
+  console.log('logged in')
+}).catch((err)=>{
+  console.log(err.message)
+})
+}) 
