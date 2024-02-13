@@ -21,9 +21,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+
+//redirect after log-in
+function redirectToDashboard() {
+  window.location.href = 'dashboard.html'; 
+}
+
+function logout() {
+  window.location.href = 'index.html'; 
+}
+
 //sign up
 const signupForm = document.querySelector('#signup-form');
-signupForm.addEventListener('submit',(e) => {
+
+signupForm?.addEventListener('submit',(e) => {
     e.preventDefault();
 
     //get user info
@@ -51,22 +62,29 @@ signupForm.addEventListener('submit',(e) => {
 
 })
 
-const logoutButton = document.querySelector('.logout')
-logoutButton.addEventListener('click', () => {
-  signOut(auth).then(() => {
-    console.log('user signed out')
-  }).catch((err)=> {console.log(err.message)})
-}) 
+
+const logoutButton = document.querySelector('.logout');
+
+  logoutButton?.addEventListener('click', () => {
+    signOut(auth).then(() => {
+      console.log('user signed out')
+      logout()
+    }).catch((err)=> {console.log(err.message)})
+  }) 
+
+
 
 const loginForm = document.querySelector('#login-form')
-loginForm.addEventListener('submit', (e) => {
+
+loginForm?.addEventListener('submit', (e) => {
 e.preventDefault()
 const email = loginForm['login-email'].value;
 const password = loginForm['login-password'].value;
 
 signInWithEmailAndPassword(auth, email, password).then(()=>{
   console.log('logged in')
+  redirectToDashboard();
 }).catch((err)=>{
   console.log(err.message)
 })
-}) 
+})

@@ -7,7 +7,7 @@ const stockPriceDisplay = document.getElementById("stockPriceDisplay");
 const stockChangeDisplay = document.getElementById("stockChangeDisplay");
 
 // Event listener for the track button
-trackButton.addEventListener("click", () => {
+trackButton?.addEventListener("click", () => {
     const symbol = stockSymbolInput.value.toUpperCase();
     fetchStockData(symbol);
 });
