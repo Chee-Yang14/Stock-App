@@ -69,7 +69,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
   \**********************/
 /***/ (() => {
 
-eval("document.addEventListener('DOMContentLoaded', function(){\r\n    let modals = document.querySelectorAll('.modal');\r\n    M.Modal.init(modals);\r\n})\n\n//# sourceURL=webpack://stock-app/./src/index.js?");
+eval("document.addEventListener('DOMContentLoaded', function(){\r\n    let modals = document.querySelectorAll('.modal');\r\n    M.Modal.init(modals);\r\n})\r\n\r\n// $(document).ready(function(){\r\n//     $('.modal').modal();\r\n//   });\n\n//# sourceURL=webpack://stock-app/./src/index.js?");
 
 /***/ }),
 

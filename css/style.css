@@ -8,6 +8,29 @@ h4,
 h5,
 h6 {font-family: "Lato"}
 
+#modal-menu {
+    left: 0 !important; /* Set the modal position to the left */
+}
+
+ /* Add custom styles here */
+#nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    order: -1; /* Move "Menu" to the left */
+}
+
+.logged-in {
+    margin-left: auto; /* Push "Home" to the right */
+}
+
+.logged-in.logout {
+    margin-left: 0px; /* Add spacing between "Home" and "Log out" if needed */
+}
+
 .w3-bar,
 h1,
 button {

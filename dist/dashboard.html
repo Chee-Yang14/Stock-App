@@ -21,51 +21,58 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link href="../css/style.css" rel="stylesheet" />
+    <style></style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="z-depth-0 ">
-      <div class="w3-bar w3-red w3-card w3-red w3-left-align ">
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <nav class="z-depth-0">
+      <div class="w3-bar w3-red w3-card w3-red w3-left-align">
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li class="menu">
+            <a
+              href="#"
+              class="w3-bar-item w3-button w3-padding-large w3-white modal-trigger"
+              data-target="modal-menu"
+            >
+              Menu
+            </a>
+          </li>
           <li class="logged-in">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white modal-trigger" data-target="modal-account"
-          >Home</a
-        >
-      </li>
-      <li class="logout">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white" 
-          >Log out</a
-        >
-      </li>
-      <li class="logged-Out">
-        
-        ></li>
-        <li class="logged-out">
-        
-        ></li>
+            <a
+              href="#"
+              class="w3-bar-item w3-button w3-padding-large w3-white modal-trigger"
+              data-target="modal-account"
+              >Home</a
+            >
+          </li>
+          <li class="logged-in logout">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">
+              Log out
+            </a>
+          </li>
+        </ul>
       </div>
-
-      <!-- Navbar on small screens -->
-      <div
-        id="navDemo"
-        class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large"
-      >
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
-      </div>
-    </ul>
     </nav>
 
-   <!-- ACCOUNT MODAL -->
-   <div id="modal-account" class="modal">
-    <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-      <div class="account-extras"></div>
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account details</h4>
+        <br />
+        <div class="account-details"></div>
+        <div class="account-extras"></div>
+      </div>
     </div>
-  </div>
+
+    <!-- MENU MODAL -->
+    <div id="modal-menu" class="modal">
+      <div class="modal-content center-align">
+        <h4>Menu Options</h4>
+        <br />
+        <p>Put your menu content here.</p>
+      </div>
+    </div>
 
     <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding: 128px 16px">
@@ -112,7 +119,7 @@
     <script src="bundle.js"></script>
     <!-- <script type="module" src="../src/firebase.js"></script> -->
     <script src="../src/display.js"></script>
-    <script src="../css/style.css"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script type="module" src="../src/auth.js"></script> -->
     <script src="../src/index.js"></script>
