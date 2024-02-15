@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Watchlist</title>
+  </head>
+  <body>
+    <h1>Stock Watchlist</h1>
+
+    <!-- Input field to add new stocks -->
+    <label for="newStockInput">Add Stock Symbol:</label>
+    <input type="text" id="newStockInput" />
+    <button onclick="addToWatchlist()">Add to Watchlist</button>
+
+    <!-- Display watchlist -->
+    <ul id="watchlist"></ul>
+
+    <!-- Include your existing stock data display elements -->
+    <div>
+      <label for="stockSymbolInput">Enter Stock Symbol:</label>
+      <input type="text" id="stockSymbolInput" />
+      <button id="trackButton">Track</button>
+    </div>
+
+    <div id="stockInfo">
+      <h2 id="stockNameDisplay"></h2>
+      <p id="stockSymbolDisplay"></p>
+      <p id="stockPriceDisplay"></p>
+      <p id="stockOpenDisplay"></p>
+      <p id="stockHighDisplay"></p>
+      <p id="stockLowDisplay"></p>
+      <p id="stockVolumeDisplay"></p>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>

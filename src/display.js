@@ -5,12 +5,38 @@ const stockNameDisplay = document.getElementById("stockNameDisplay");
 const stockSymbolDisplay = document.getElementById("stockSymbolDisplay");
 const stockPriceDisplay = document.getElementById("stockPriceDisplay");
 const stockChangeDisplay = document.getElementById("stockChangeDisplay");
+// New: Get references to watchlist HTML elements
+const newStockInput = document.getElementById("newStockInput");
+const watchlist = document.getElementById("watchlist");
+
+// Watchlist array to store added stocks
+let watchlistArray = [];
 
 // Event listener for the track button
 trackButton?.addEventListener("click", () => {
     const symbol = stockSymbolInput.value.toUpperCase();
     fetchStockData(symbol);
 });
+
+// New: Function to add stocks to the watchlist
+function addToWatchlist() {
+    const newSymbol = newStockInput.value.toUpperCase();
+
+    // Check if the stock is not already in the watchlist
+    if (!watchlistArray.includes(newSymbol)) {
+        watchlistArray.push(newSymbol);
+
+        // Create a new list item for the watchlist
+        const listItem = document.createElement("li");
+        listItem.textContent = newSymbol;
+
+        // Append the new stock to the watchlist
+        watchlist.appendChild(listItem);
+    }
+
+    // Clear the input field
+    newStockInput.value = "";
+}
 
 // Function to fetch stock data from an API
 function fetchStockData(symbol) {
