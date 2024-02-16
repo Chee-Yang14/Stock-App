@@ -30,6 +30,12 @@ h6 {font-family: "Lato"}
 	transition: 0.4s;
 }
 
+#sideWatchlist{
+	color: black;
+	height: 50;
+	width: 50;
+}
+
 .hamburger.is-active:before {
 	transform: rotate(-45deg) translate(-8px, 6px);
 }

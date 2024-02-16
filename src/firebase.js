@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "../node_modules/@firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword} from "../node_modules/@firebase/auth";
+import {getFirestore} from "../node_modules/@firebase/firestore"
 import { getAnalytics } from "../node_modules/@firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,8 +20,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app); 
 
 //redirect after log-in
 function redirectToDashboard() {
@@ -88,3 +89,79 @@ signInWithEmailAndPassword(auth, email, password).then(()=>{
   console.log(err.message)
 })
 })
+
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in
+    const userId = user.uid;
+
+    // Load watchlist on page load
+    loadWatchlist(userId);
+
+    // Event listener for the track button
+    trackButton?.addEventListener("click", () => {
+      const symbol = stockSymbolInput.value.toUpperCase();
+      fetchStockData(symbol);
+    });
+
+    // Event listener for adding to watchlist
+    document.getElementById("addToWatchlistButton")?.addEventListener("click", () => {
+      addToWatchlist(userId);
+    });
+  } else {
+    // User is signed out
+    // You may want to handle this case based on your application's logic
+  }
+});
+
+// Function to add stocks to the watchlist
+function addToWatchlist(userId) {
+  const newSymbol = newStockInput.value.toUpperCase();
+
+  if (!watchlistArray.includes(newSymbol)) {
+    watchlistArray.push(newSymbol);
+
+    // Update the UI
+    const listItem = document.createElement("li");
+    listItem.textContent = newSymbol;
+    watchlist.appendChild(listItem);
+
+    // Update Firestore with the new watchlist
+    updateFirebaseWatchlist(userId, watchlistArray);
+  }
+
+  newStockInput.value = "";
+}
+
+// Function to update watchlist in Firestore
+function updateFirebaseWatchlist(userId, watchlist) {
+  const userRef = db.collection('users').doc(userId);
+  
+
+  // Update the watchlist data in Firestore
+  userRef.set({ watchlist: watchlist });
+}
+
+// Function to load watchlist from Firestore
+function loadWatchlist(userId) {
+  const userRef = db.collection("users").doc(userId);
+
+  // Retrieve the watchlist data from Firestore
+  userRef.get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      if (data.watchlist) {
+        watchlistArray = data.watchlist;
+
+        // Update the UI with the existing watchlist
+        watchlistArray.forEach((symbol) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = symbol;
+          watchlist.appendChild(listItem);
+        });
+      }
+    }
+  });
+}
+

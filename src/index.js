@@ -13,6 +13,8 @@ const menu_btn = document.querySelector('.menu');
 	});
 }
 
+
+
 // $(document).ready(function(){
 //     $('.modal').modal();
 //   });

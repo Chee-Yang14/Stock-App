@@ -8,6 +8,7 @@ const stockChangeDisplay = document.getElementById("stockChangeDisplay");
 // New: Get references to watchlist HTML elements
 const newStockInput = document.getElementById("newStockInput");
 const watchlist = document.getElementById("watchlist");
+const sideWatchlist = document.getElementById("sideWatchlist");
 
 // Watchlist array to store added stocks
 let watchlistArray = [];
@@ -20,22 +21,23 @@ trackButton?.addEventListener("click", () => {
 
 // New: Function to add stocks to the watchlist
 function addToWatchlist() {
-    const newSymbol = newStockInput.value.toUpperCase();
+  const newSymbol = newStockInput.value.toUpperCase();
 
-    // Check if the stock is not already in the watchlist
-    if (!watchlistArray.includes(newSymbol)) {
-        watchlistArray.push(newSymbol);
+  // Check if the stock is not already in the watchlist
+  if (!watchlistArray.includes(newSymbol)) {
+    watchlistArray.push(newSymbol);
 
-        // Create a new list item for the watchlist
-        const listItem = document.createElement("li");
-        listItem.textContent = newSymbol;
+    // Create a new list item for the watchlist
+    const listItem = document.createElement("li");
+    listItem.textContent = newSymbol;
 
-        // Append the new stock to the watchlist
-        watchlist.appendChild(listItem);
-    }
+    // Append the new stock to the main watchlist
+    watchlist.appendChild(listItem);
 
-    // Clear the input field
-    newStockInput.value = "";
+  }
+
+  // Clear the input field
+  newStockInput.value = "";
 }
 
 // Function to fetch stock data from an API

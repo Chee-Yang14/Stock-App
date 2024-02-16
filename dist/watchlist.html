@@ -1,38 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Stock App</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stock Watchlist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="../css/style.css" rel="stylesheet" />
+    <style></style>
   </head>
   <body>
-    <h1>Stock Watchlist</h1>
+    <!-- Navbar -->
+    <nav class="z-depth-0">
+      <div class="w3-bar w3-red w3-card w3-red w3-left-align">
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li class="menu">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">
+              Menu
+            </a>
+          </li>
+          <li class="logged-in">
+            <a
+              href="#"
+              class="w3-bar-item w3-button w3-padding-large w3-white modal-trigger"
+              data-target="modal-account"
+              >Account</a
+            >
+          </li>
+          <li class="logged-in logout">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">
+              Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    <!-- Input field to add new stocks -->
-    <label for="newStockInput">Add Stock Symbol:</label>
-    <input type="text" id="newStockInput" />
-    <button onclick="addToWatchlist()">Add to Watchlist</button>
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account details</h4>
+        <br />
+        <div class="account-details"></div>
+        <div class="account-extras"></div>
+      </div>
+    </div>
 
-    <!-- Display watchlist -->
-    <ul id="watchlist"></ul>
+    <!-- MENU MODAL -->
+    <div id="modal-menu" class="modal">
+      <div class="modal-content center-align">
+        <h4>Menu Options</h4>
+        <br />
+        <p>Put your menu content here.</p>
+      </div>
+    </div>
 
-    <!-- Include your existing stock data display elements -->
+    <!-- Header -->
+    <header class="w3-container w3-red w3-center" style="padding: 128px 16px">
+      <h1 class="w3-margin w3-jumbo">Stock App</h1>
+    </header>
+    <nav class="mobile-nav">
+      <a href="dashboard.html">Home</a>
+      <a href="watchlist.html">watchlist</a>
+      <a href="#">learn</a>
+      <a href="#">Contact</a>
+    </nav>
+
     <div>
-      <label for="stockSymbolInput">Enter Stock Symbol:</label>
-      <input type="text" id="stockSymbolInput" />
-      <button id="trackButton">Track</button>
+      <section>
+        <h1>Stock Watchlist</h1>
+        <!-- Input field to add new stocks -->
+        <label for="newStockInput">Add Stock Symbol:</label>
+        <input type="text" id="newStockInput" />
+        <button id="addToWatchlistButton">Add to Watchlist</button>
+
+        <!-- Display watchlist -->
+        <ul id="watchlist"></ul>
+      </section>
     </div>
 
-    <div id="stockInfo">
-      <h2 id="stockNameDisplay"></h2>
-      <p id="stockSymbolDisplay"></p>
-      <p id="stockPriceDisplay"></p>
-      <p id="stockOpenDisplay"></p>
-      <p id="stockHighDisplay"></p>
-      <p id="stockLowDisplay"></p>
-      <p id="stockVolumeDisplay"></p>
+    <div class="center-container w3-container w3-center stock">
+      <section>
+        <h2>Track a Stock</h2>
+        <div class="input-container">
+          <input
+            type="text"
+            id="stockSymbolInput"
+            placeholder="Enter stock symbol"
+          />
+          <button id="trackButton">Track</button>
+        </div>
+      </section>
+
+      <section id="stockInfo">
+        <h2 id="stockNameDisplay"></h2>
+        <div class="stock-details">
+          <p id="stockSymbolDisplay"></p>
+          <p id="stockPriceDisplay"></p>
+          <p id="stockOpenDisplay"></p>
+          <p id="stockHighDisplay"></p>
+          <p id="stockLowDisplay"></p>
+          <p id="stockVolumeDisplay"></p>
+        </div>
+      </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+      <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+    </footer>
     <script src="bundle.js"></script>
+    <!-- <script type="module" src="../src/firebase.js"></script> -->
+    <script src="../src/display.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script type="module" src="../src/auth.js"></script> -->
+    <script src="../src/index.js"></script>
+    <script>
+      // Used to toggle the menu on small screens when clicking on the menu button
+      function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+    </script>
   </body>
 </html>
