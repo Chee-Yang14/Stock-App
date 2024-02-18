@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "../node_modules/@firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword} from "../node_modules/@firebase/auth";
-import {getFirestore} from "../node_modules/@firebase/firestore"
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword,onAuthStateChanged} from "../node_modules/@firebase/auth";
+import {getFirestore, doc, setDoc, getDoc} from "../node_modules/@firebase/firestore"
 import { getAnalytics } from "../node_modules/@firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -90,11 +90,13 @@ signInWithEmailAndPassword(auth, email, password).then(()=>{
 })
 })
 
+// Define userId globally
+let userId;
 
 auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in
-    const userId = user.uid;
+    userId = user.uid;
 
     // Load watchlist on page load
     loadWatchlist(userId);
@@ -110,8 +112,7 @@ auth.onAuthStateChanged((user) => {
       addToWatchlist(userId);
     });
   } else {
-    // User is signed out
-    // You may want to handle this case based on your application's logic
+  console.log('you arent logged in')  
   }
 });
 
@@ -135,33 +136,37 @@ function addToWatchlist(userId) {
 }
 
 // Function to update watchlist in Firestore
-function updateFirebaseWatchlist(userId, watchlist) {
-  const userRef = db.collection('users').doc(userId);
-  
+async function updateFirebaseWatchlist(userId, watchlist) {
+  const userRef = doc(db, 'users', userId);
 
   // Update the watchlist data in Firestore
-  userRef.set({ watchlist: watchlist });
+  await setDoc(userRef, { watchlist: watchlist });
 }
 
 // Function to load watchlist from Firestore
-function loadWatchlist(userId) {
-  const userRef = db.collection("users").doc(userId);
+async function loadWatchlist(userId) {
+  const userRef = doc(db, 'users', userId);
 
   // Retrieve the watchlist data from Firestore
-  userRef.get().then((doc) => {
-    if (doc.exists) {
-      const data = doc.data();
-      if (data.watchlist) {
-        watchlistArray = data.watchlist;
+  const userDoc = await getDoc(userRef);
 
-        // Update the UI with the existing watchlist
-        watchlistArray.forEach((symbol) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = symbol;
-          watchlist.appendChild(listItem);
-        });
-      }
+  if (userDoc.exists()) {
+    const data = userDoc.data();
+    if (data.watchlist) {
+      watchlistArray = data.watchlist;
+
+      // Update the UI with the existing watchlist
+      watchlistArray.forEach((symbol) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = symbol;
+        watchlist.appendChild(listItem);
+      });
     }
-  });
+  }
 }
+
+// Event listener for adding to watchlist
+document.getElementById("addToWatchlistButton")?.addEventListener("click", () => {
+  addToWatchlist(userId);
+});
 
