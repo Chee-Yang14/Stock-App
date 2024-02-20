@@ -97,7 +97,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in
     userId = user.uid;
-
+    displayUserInfo(user);
     // Load watchlist on page load
     loadWatchlist(userId);
 
@@ -112,10 +112,25 @@ auth.onAuthStateChanged((user) => {
       addToWatchlist(userId);
     });
   } else {
+    clearUserInfo();
   console.log('you arent logged in')  
   }
 });
 
+
+// Function to display user information in the modal
+function displayUserInfo(user) {
+  document.getElementById('password').innerText = 'password: ' + user.password;
+  document.getElementById('email').innerText = 'Email: ' + user.email;
+  // Add more fields as needed
+}
+
+// Function to clear user information when not logged in
+function clearUserInfo() {
+  document.getElementById('password').innerText = '';
+  document.getElementById('email').innerText = '';
+  // Clear other fields if needed
+}
 // Function to add stocks to the watchlist
 function addToWatchlist(userId) {
   const newSymbol = newStockInput.value.toUpperCase();
@@ -159,7 +174,7 @@ async function loadWatchlist(userId) {
       watchlistArray.forEach((symbol) => {
         const listItem = document.createElement("li");
         listItem.textContent = symbol;
-        watchlist.appendChild(listItem);
+        watchlist?.appendChild(listItem);
       });
     }
   }
